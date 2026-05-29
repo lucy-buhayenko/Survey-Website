@@ -478,3 +478,203 @@ margin-top:20px;
 button:hover{
 background:var(--green-dark);
 }
+
+
+
+/* ==================================
+FORM PAGE LAYOUT
+================================== */
+
+.form-wrapper{
+    max-width:1200px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.form-card{
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+    border:1px solid var(--gray-border);
+}
+
+.form-card h2{
+    color:var(--green-dark);
+    margin-bottom:8px;
+}
+
+.section-description{
+    color:var(--muted);
+    margin-bottom:30px;
+}
+
+/* ==================================
+TEXTAREA IMPROVEMENTS
+================================== */
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+/* ==================================
+SELECT IMPROVEMENTS
+================================== */
+
+select{
+    cursor:pointer;
+}
+
+/* ==================================
+SECTION HEADERS
+================================== */
+
+.form-card h3{
+    margin-bottom:15px;
+    color:var(--green-dark);
+}
+
+/* ==================================
+SPECIAL RESPONSE PANELS
+================================== */
+
+.response-panel{
+    background:#FAFBFC;
+    border:1px solid var(--gray-border);
+    border-left:5px solid var(--green);
+    border-radius:14px;
+    padding:20px;
+}
+
+/* ==================================
+EMPLOYER FEEDBACK SECTION
+(placement.html)
+================================== */
+
+.feedback-box{
+    background:var(--green-light);
+    border:1px solid #cfe3d6;
+    border-radius:14px;
+    padding:20px;
+}
+
+/* ==================================
+PROGRAM EVALUATION CARDS
+(evaluation.html)
+================================== */
+
+.evaluation-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.eval-card{
+    background:#FAFBFC;
+    border:1px solid var(--gray-border);
+    border-radius:16px;
+    padding:20px;
+    transition:.25s;
+}
+
+.eval-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+/* ==================================
+REFLECTION CARDS
+(reflection.html)
+================================== */
+
+.reflection-card{
+    background:#FAFBFC;
+    border-radius:16px;
+    border:1px solid var(--gray-border);
+    padding:20px;
+}
+
+.reflection-card label{
+    font-size:1rem;
+    margin-bottom:10px;
+    display:block;
+}
+
+/* ==================================
+CONFIDENCE SCALE
+================================== */
+
+.confidence-scale{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.confidence-scale label{
+    background:white;
+    border:1px solid var(--gray-border);
+    border-radius:12px;
+    padding:12px 18px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.confidence-scale label:hover{
+    border-color:var(--green);
+    background:var(--green-light);
+}
+
+/* ==================================
+SUBMIT AREA
+================================== */
+
+.form-actions{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:30px;
+}
+
+.submit-btn{
+    background:var(--green);
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.submit-btn:hover{
+    background:var(--green-dark);
+}
+
+/* ==================================
+SUCCESS CARD
+================================== */
+
+.success-card{
+    background:#F0FAF4;
+    border:1px solid #c9e7d3;
+    border-left:6px solid var(--green);
+    border-radius:16px;
+    padding:20px;
+}
+
+/* ==================================
+RESPONSIVE
+================================== */
+
+@media(max-width:768px){
+
+    .form-card{
+        padding:25px;
+    }
+
+    .form-actions{
+        justify-content:center;
+    }
+
+}
