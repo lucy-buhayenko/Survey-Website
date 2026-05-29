@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Mercy Home VDP Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo-area">
+<img src="css/mercyhome.png" alt="Mercy Home">
+<span>VDP Portal</span>
+</div>
+
+<ul class="nav-links">
+<li><a href="#">Home</a></li>
+<li><a href="#">Forms</a></li>
+<li><a href="#">Dashboard</a></li>
+<li><a href="#">Reports</a></li>
+<li><a href="#">Help</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+
+<button class="mobile-toggle">☰</button>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-overlay">
+
+<h1>
+Vocational Development Program Portal
+</h1>
+
+<p>
+Track resident growth, workforce readiness,
+barriers, and placement outcomes in one
+unified system.
+</p>
+
+<div class="hero-buttons">
+
+<button class="btn-primary">
+Start New Survey
+</button>
+
+<button class="btn-secondary">
+View Dashboard
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FORM CARDS -->
+
+<section class="forms-section">
+
+<h2>Quick Access Forms</h2>
+
+<div class="form-grid">
+
+<a href="forms/intake.html" class="card green">
+<h3>Resident Intake</h3>
+<p>Create new resident profiles.</p>
+</a>
+
+<a href="forms/weekly-checkin.html" class="card navy">
+<h3>Weekly Check-In</h3>
+<p>Track progress and engagement.</p>
+</a>
+
+<a href="forms/skills.html" class="card navy">
+<h3>Skills Observation</h3>
+<p>Evaluate workforce competencies.</p>
+</a>
+
+<a href="forms/barriers.html" class="card red">
+<h3>Barrier Update</h3>
+<p>Monitor support needs.</p>
+</a>
+
+<a href="forms/activities.html" class="card green">
+<h3>Activity Participation</h3>
+<p>Record program involvement.</p>
+</a>
+
+<a href="forms/placement.html" class="card gold">
+<h3>Placement Follow-Up</h3>
+<p>Track placement outcomes.</p>
+</a>
+
+<a href="forms/evaluation.html" class="card navy">
+<h3>Program Evaluation</h3>
+<p>Measure program effectiveness.</p>
+</a>
+
+<a href="forms/reflection.html" class="card green">
+<h3>Resident Reflection</h3>
+<p>Capture resident feedback.</p>
+</a>
+
+</div>
+
+</section>
+
+<!-- KPI SECTION -->
+
+<section class="kpi-section">
+
+<h2>Program Overview</h2>
+
+<div class="kpi-grid">
+
+<div class="kpi-card">
+<span>Active Residents</span>
+<h3>124</h3>
+</div>
+
+<div class="kpi-card">
+<span>Placement Ready</span>
+<h3>67</h3>
+</div>
+
+<div class="kpi-card">
+<span>Readiness Score</span>
+<h3>82%</h3>
+</div>
+
+<div class="kpi-card">
+<span>Top Barrier</span>
+<h3>Transportation</h3>
+</div>
+
+<div class="kpi-card">
+<span>Current Placements</span>
+<h3>34</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- DASHBOARD CHARTS -->
+
+<section class="dashboard-section">
+
+<div class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h3>Readiness Trend</h3>
+
+<canvas id="readinessChart"></canvas>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>Barrier Distribution</h3>
+
+<canvas id="barrierChart"></canvas>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ACTIVITY TABLE -->
+
+<section class="activity-section">
+
+<h2>Recent Activity</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+<tr>
+<th>Resident</th>
+<th>Form Submitted</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>R-1024</td>
+<td>Weekly Check-In</td>
+<td>06/03/2026</td>
+</tr>
+
+<tr>
+<td>R-1035</td>
+<td>Skills Observation</td>
+<td>06/03/2026</td>
+</tr>
+
+<tr>
+<td>R-1099</td>
+<td>Barrier Update</td>
+<td>06/02/2026</td>
+</tr>
+
+<tr>
+<td>R-1012</td>
+<td>Resident Reflection</td>
+<td>06/02/2026</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- SUPPORT -->
+
+<section class="support-section">
+
+<h2>Help & Support</h2>
+
+<p>
+Need assistance with forms, reporting,
+or resident tracking?
+</p>
+
+<button class="btn-primary">
+Contact Support
+</button>
+
+</section>
+
+<footer>
+
+<p>
+© Mercy Home Vocational Development Program
+</p>
+
+</footer>
+
+<script src="js/app.js"></script>
+
+
+</body>
+</html>
