@@ -1,249 +1,107 @@
 <section class="form-card">
 
-    <h2>Section B — Initial Workplace Readiness</h2>
+    <h2>Section B — Weekly Workplace Readiness Check-In</h2>
 
     <p class="section-description">
-        Rate the resident's current workplace readiness.
+        Evaluate the resident’s current workplace readiness and weekly progress trends.
     </p>
 
+    <!-- ================= SCALE GUIDE ================= -->
     <div class="rating-scale">
 
         <div class="scale-item">
-            <span class="scale-low">1 = Needs Significant Support</span>
-            <span class="scale-mid">3 = Developing</span>
-            <span class="scale-high">5 = Consistently Demonstrates</span>
+            <span>1 = Needs Significant Support</span>
+            <span>3 = Developing</span>
+            <span>5 = Consistently Demonstrates</span>
         </div>
 
     </div>
 
+    <!-- ================= READINESS METRICS ================= -->
     <div class="readiness-grid">
 
-        <!-- Attendance -->
-
         <div class="readiness-item">
-
-            <label>
-                How consistently does the resident arrive on time?
-            </label>
-
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="readiness-slider">
-
-            <div class="slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
+            <label>Attendance & Punctuality</label>
+            <input type="range" min="1" max="5" value="3" class="readiness-slider">
+            <div class="slider-labels"><span>Low</span><span>High</span></div>
         </div>
 
-        <!-- Instructions -->
-
         <div class="readiness-item">
-
-            <label>
-                How well does the resident follow instructions?
-            </label>
-
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="readiness-slider">
-
-            <div class="slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
+            <label>Follows Instructions</label>
+            <input type="range" min="1" max="5" value="3" class="readiness-slider">
+            <div class="slider-labels"><span>Low</span><span>High</span></div>
         </div>
 
-        <!-- Communication -->
-
         <div class="readiness-item">
-
-            <label>
-                How professionally does the resident communicate?
-            </label>
-
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="readiness-slider">
-
-            <div class="slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
+            <label>Communication Skills</label>
+            <input type="range" min="1" max="5" value="3" class="readiness-slider">
+            <div class="slider-labels"><span>Low</span><span>High</span></div>
         </div>
 
-        <!-- Responsibilities -->
-
         <div class="readiness-item">
-
-            <label>
-                How consistently does the resident complete responsibilities?
-            </label>
-
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="readiness-slider">
-
-            <div class="slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
+            <label>Task Completion Consistency</label>
+            <input type="range" min="1" max="5" value="3" class="readiness-slider">
+            <div class="slider-labels"><span>Low</span><span>High</span></div>
         </div>
 
-        <!-- Feedback -->
-
         <div class="readiness-item">
-
-            <label>
-                How well does the resident accept feedback?
-            </label>
-
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="readiness-slider">
-
-            <div class="slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
+            <label>Receives Feedback</label>
+            <input type="range" min="1" max="5" value="3" class="readiness-slider">
+            <div class="slider-labels"><span>Low</span><span>High</span></div>
         </div>
 
-        <!-- Independent Work -->
-
         <div class="readiness-item">
-
-            <label>
-                How independently does the resident complete tasks?
-            </label>
-
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="readiness-slider">
-
-            <div class="slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
+            <label>Independent Work Ability</label>
+            <input type="range" min="1" max="5" value="3" class="readiness-slider">
+            <div class="slider-labels"><span>Low</span><span>High</span></div>
         </div>
 
-        <!-- Asking For Help -->
-
         <div class="readiness-item">
-
-            <label>
-                How appropriately does the resident ask for help?
-            </label>
-
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="readiness-slider">
-
-            <div class="slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
+            <label>Asks for Help Appropriately</label>
+            <input type="range" min="1" max="5" value="3" class="readiness-slider">
+            <div class="slider-labels"><span>Low</span><span>High</span></div>
         </div>
 
-        <!-- Engagement -->
-
         <div class="readiness-item">
-
-            <label>
-                How consistently does the resident stay engaged during activities?
-            </label>
-
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="readiness-slider">
-
-            <div class="slider-labels">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-
+            <label>Engagement & Participation</label>
+            <input type="range" min="1" max="5" value="3" class="readiness-slider">
+            <div class="slider-labels"><span>Low</span><span>High</span></div>
         </div>
 
     </div>
 
-</section>
+    <!-- ================= WEEKLY NOTES ================= -->
+    <div class="form-card" style="margin-top:20px;">
 
+        <h3>Weekly Notes</h3>
 
-<section id="section2">
+        <div class="form-grid">
 
-    <!-- Section B content -->
+            <div class="field full-width">
+                <label>Key Progress This Week</label>
+                <textarea rows="3" placeholder="What improved this week?"></textarea>
+            </div>
 
-    <button type="button" onclick="showSection(1)">
-        Previous
-    </button>
+            <div class="field full-width">
+                <label>Challenges Observed</label>
+                <textarea rows="3" placeholder="What barriers or issues came up?"></textarea>
+            </div>
 
-    <button type="button" onclick="showSection(3)">
-        Next
-    </button>
+            <div class="field full-width">
+                <label>Support Needed Next Week</label>
+                <textarea rows="3" placeholder="What support is recommended?"></textarea>
+            </div>
 
+        </div>
+    </div>
 
-
+    <!-- ================= SUBMIT ================= -->
     <div class="form-actions">
 
-<button type="submit" class="submit-btn">
-    Submit Form
-</button>
+        <button type="submit" class="submit-btn">
+            Submit Weekly Check-In
+        </button>
 
-</div>
+    </div>
 
 </section>
-

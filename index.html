@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mercy Home VDP Portal</title>
+<title>VDP Portal | Mercy Home</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -18,220 +17,215 @@
 <!-- ================= NAVBAR ================= -->
 <nav class="navbar">
 
-<div class="logo-area">
-    <img src="css/mercyhome.png" alt="Mercy Home Logo">
-    <span>VDP Portal</span>
-</div>
+    <div class="logo-area">
+        <img src="css/mercyhome.png" alt="Mercy Home Logo">
+        <span>VDP Portal</span>
+    </div>
 
-<ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="forms/intake.html">Forms</a></li>
-    <li><a href="#dashboard">Dashboard</a></li>
-    <li><a href="#reports">Reports</a></li>
-    <li><a href="#help">Help</a></li>
-    <li><a href="#contact">Contact</a></li>
-</ul>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="forms/intake.html">Forms</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#activity">Activity</a></li>
+    </ul>
 
 </nav>
 
 <!-- ================= HERO ================= -->
 <section class="hero">
 
-<div class="hero-overlay">
+    <div>
+        <h1>Vocational Development Portal</h1>
 
-    <h1>Vocational Development Program Portal</h1>
+        <p>
+            Track resident progress, workforce readiness, barriers, and placements
+            in one unified system.
+        </p>
 
-    <p>
-        Track resident growth, workforce readiness,
-        barriers, and placement outcomes in one unified system.
-    </p>
+        <div class="hero-buttons">
 
-    <div class="hero-buttons">
+            <a href="forms/intake.html">
+                <button class="btn-primary">Start Intake</button>
+            </a>
 
-        <a href="forms/intake.html">
-            <button class="btn-primary">Start New Survey</button>
-        </a>
+            <a href="#dashboard">
+                <button class="btn-secondary">View Dashboard</button>
+            </a>
 
-        <a href="#dashboard">
-            <button class="btn-secondary">View Dashboard</button>
-        </a>
-
+        </div>
     </div>
-
-</div>
 
 </section>
 
-<!-- ================= FORMS ================= -->
-<section class="forms-section">
+<!-- ================= QUICK FORMS ================= -->
+<section class="forms-section form-wrapper">
 
-<h2>Quick Access Forms</h2>
+    <h2>Quick Access Forms</h2>
+    <p class="section-description">Select a form to begin documentation or tracking.</p>
 
-<div class="form-grid">
+    <div class="form-grid">
 
-    <a href="forms/intake.html" class="card green">
-        <h3>Resident Intake</h3>
-        <p>Create new resident profiles.</p>
-    </a>
+        <a class="card green" href="forms/intake.html">
+            <h3>Intake</h3>
+            <p>New resident profile setup</p>
+        </a>
 
-    <a href="forms/weekly-checkin.html" class="card blue">
-        <h3>Weekly Check-In</h3>
-        <p>Track progress and engagement.</p>
-    </a>
+        <a class="card blue" href="forms/weekly-checkin.html">
+            <h3>Weekly Check-In</h3>
+            <p>Work readiness tracking</p>
+        </a>
 
-    <a href="forms/skills.html" class="card blue">
-        <h3>Skills Observation</h3>
-        <p>Evaluate workforce competencies.</p>
-    </a>
+        <a class="card blue" href="forms/skills.html">
+            <h3>Skills Assessment</h3>
+            <p>Competency evaluation</p>
+        </a>
 
-    <a href="forms/barriers.html" class="card green">
-        <h3>Barrier Update</h3>
-        <p>Monitor support needs.</p>
-    </a>
+        <a class="card green" href="forms/barriers.html">
+            <h3>Barriers</h3>
+            <p>Support needs tracking</p>
+        </a>
 
-    <a href="forms/activities.html" class="card green">
-        <h3>Activity Participation</h3>
-        <p>Record program involvement.</p>
-    </a>
+        <a class="card green" href="forms/activities.html">
+            <h3>Activities</h3>
+            <p>Interest & engagement</p>
+        </a>
 
-    <a href="forms/placement.html" class="card blue">
-        <h3>Placement Follow-Up</h3>
-        <p>Track placement outcomes.</p>
-    </a>
+        <a class="card blue" href="forms/placement.html">
+            <h3>Placement</h3>
+            <p>Employment outcomes</p>
+        </a>
 
-    <a href="forms/evaluation.html" class="card blue">
-        <h3>Program Evaluation</h3>
-        <p>Measure program effectiveness.</p>
-    </a>
+        <a class="card blue" href="forms/evaluation.html">
+            <h3>Evaluation</h3>
+            <p>Program effectiveness</p>
+        </a>
 
-    <a href="forms/reflection.html" class="card green">
-        <h3>Resident Reflection</h3>
-        <p>Capture resident feedback.</p>
-    </a>
+        <a class="card green" href="forms/reflection.html">
+            <h3>Reflection</h3>
+            <p>Resident feedback</p>
+        </a>
 
-</div>
+    </div>
 
 </section>
 
-<!-- ================= KPI ================= -->
-<section class="kpi-section" id="dashboard">
+<!-- ================= KPI DASHBOARD ================= -->
+<section class="kpi-section form-wrapper" id="dashboard">
 
-<h2>Program Overview</h2>
+    <h2>Program Overview</h2>
+    <p class="section-description">Live summary of program performance</p>
 
-<div class="kpi-grid">
+    <div class="kpi-grid">
 
-    <div class="kpi-card">
-        <span>Active Residents</span>
-        <h3>124</h3>
+        <div class="kpi-card">
+            <span>Active Residents</span>
+            <h3>124</h3>
+        </div>
+
+        <div class="kpi-card">
+            <span>Placement Ready</span>
+            <h3>67</h3>
+        </div>
+
+        <div class="kpi-card">
+            <span>Avg Readiness</span>
+            <h3>82%</h3>
+        </div>
+
+        <div class="kpi-card">
+            <span>Top Barrier</span>
+            <h3>Transportation</h3>
+        </div>
+
+        <div class="kpi-card">
+            <span>Active Placements</span>
+            <h3>34</h3>
+        </div>
+
     </div>
-
-    <div class="kpi-card">
-        <span>Placement Ready</span>
-        <h3>67</h3>
-    </div>
-
-    <div class="kpi-card">
-        <span>Readiness Score</span>
-        <h3>82%</h3>
-    </div>
-
-    <div class="kpi-card">
-        <span>Top Barrier</span>
-        <h3>Transportation</h3>
-    </div>
-
-    <div class="kpi-card">
-        <span>Current Placements</span>
-        <h3>34</h3>
-    </div>
-
-</div>
 
 </section>
 
 <!-- ================= CHARTS ================= -->
-<section class="dashboard-section">
+<section class="dashboard-section form-wrapper">
 
-<div class="dashboard-grid">
+    <div class="dashboard-grid">
 
-    <div class="dashboard-card">
-        <h3>Readiness Trend</h3>
-        <canvas id="readinessChart"></canvas>
+        <div class="dashboard-card">
+            <h3>Readiness Trend</h3>
+            <canvas id="readinessChart"></canvas>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Barrier Distribution</h3>
+            <canvas id="barrierChart"></canvas>
+        </div>
+
     </div>
-
-    <div class="dashboard-card">
-        <h3>Barrier Distribution</h3>
-        <canvas id="barrierChart"></canvas>
-    </div>
-
-</div>
 
 </section>
 
-<!-- ================= TABLE ================= -->
-<section class="activity-section">
+<!-- ================= ACTIVITY TABLE ================= -->
+<section class="activity-section form-wrapper" id="activity">
 
-<h2>Recent Activity</h2>
+    <h2>Recent Activity</h2>
+    <p class="section-description">Latest form submissions across the program</p>
 
-<div class="table-container">
+    <div class="table-container">
 
-<table>
-<thead>
-<tr>
-<th>Resident</th>
-<th>Form Submitted</th>
-<th>Date</th>
-</tr>
-</thead>
+        <table>
+            <thead>
+                <tr>
+                    <th>Resident</th>
+                    <th>Form</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
 
-<tbody>
-<tr>
-<td>R-1024</td>
-<td>Weekly Check-In</td>
-<td>06/03/2026</td>
-</tr>
+            <tbody>
+                <tr>
+                    <td>R-1024</td>
+                    <td>Weekly Check-In</td>
+                    <td>06/03/2026</td>
+                </tr>
+                <tr>
+                    <td>R-1035</td>
+                    <td>Skills Assessment</td>
+                    <td>06/03/2026</td>
+                </tr>
+                <tr>
+                    <td>R-1099</td>
+                    <td>Barriers Update</td>
+                    <td>06/02/2026</td>
+                </tr>
+                <tr>
+                    <td>R-1012</td>
+                    <td>Reflection</td>
+                    <td>06/02/2026</td>
+                </tr>
+            </tbody>
 
-<tr>
-<td>R-1035</td>
-<td>Skills Observation</td>
-<td>06/03/2026</td>
-</tr>
+        </table>
 
-<tr>
-<td>R-1099</td>
-<td>Barrier Update</td>
-<td>06/02/2026</td>
-</tr>
-
-<tr>
-<td>R-1012</td>
-<td>Resident Reflection</td>
-<td>06/02/2026</td>
-</tr>
-
-</tbody>
-</table>
-
-</div>
+    </div>
 
 </section>
 
 <!-- ================= SUPPORT ================= -->
-<section class="support-section">
+<section class="support-section form-wrapper">
 
-<h2>Help & Support</h2>
+    <h2>Support</h2>
+    <p class="section-description">Need help with forms or reporting?</p>
 
-<p>Need assistance with forms, reporting, or resident tracking?</p>
-
-<a href="#contact">
-    <button class="btn-primary">Contact Support</button>
-</a>
+    <a href="#contact">
+        <button class="btn-primary">Contact Support</button>
+    </a>
 
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer>
-<p>© Mercy Home Vocational Development Program</p>
+    <p>© Mercy Home Vocational Development Program</p>
 </footer>
 
 <!-- ================= JS ================= -->

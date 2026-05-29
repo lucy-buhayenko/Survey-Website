@@ -1,34 +1,143 @@
 <section class="form-card">
 
-```
-<h2>Section A — Basic Information</h2>
+    <h2>Section A — Resident Intake</h2>
 
-<p class="section-description">
-    Resident demographic, educational, and employment information.
-</p>
+    <p class="section-description">
+        Capture core demographic, education, and employment background information.
+    </p>
 
-<div class="form-grid">
+    <!-- ================= BASIC INFO ================= -->
+    <div class="form-grid">
 
-    <!-- ALL YOUR EXISTING FIELDS STAY HERE -->
+        <div class="field">
+            <label>Resident ID</label>
+            <input type="text" placeholder="e.g. R-1024">
+        </div>
 
-</div>
+        <div class="field">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter full name">
+        </div>
 
-<div class="form-navigation">
+        <div class="field">
+            <label>Date of Birth</label>
+            <input type="date">
+        </div>
 
-    <a href="section2.html" class="btn-primary">
-        Next →
-    </a>
+        <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="(000) 000-0000">
+        </div>
 
-</div>
+        <div class="field full-width">
+            <label>Address</label>
+            <input type="text" placeholder="Street, City, State">
+        </div>
 
+    </div>
 
-<div class="form-actions">
+    <!-- ================= EDUCATION ================= -->
+    <div class="form-card" style="margin-top:20px;">
 
-<button type="submit" class="submit-btn">
-    Submit Form
-</button>
+        <h3>Education Background</h3>
 
-</div>
-```
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Highest Level Completed</label>
+                <select>
+                    <option>Some High School</option>
+                    <option>High School Diploma / GED</option>
+                    <option>Some College</option>
+                    <option>Associate Degree</option>
+                    <option>Bachelor’s Degree</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Currently Enrolled?</label>
+                <select>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= EMPLOYMENT ================= -->
+    <div class="form-card" style="margin-top:20px;">
+
+        <h3>Employment History</h3>
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Currently Employed?</label>
+                <select>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Previous Job Title</label>
+                <input type="text" placeholder="e.g. Warehouse Associate">
+            </div>
+
+            <div class="field full-width">
+                <label>Work Experience Notes</label>
+                <textarea rows="3" placeholder="Describe previous roles, skills, or experience..."></textarea>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= READINESS QUICK SNAPSHOT ================= -->
+    <div class="form-card" style="margin-top:20px;">
+
+        <h3>Initial Readiness Snapshot</h3>
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Work Readiness Level</label>
+                <select>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Primary Goal</label>
+                <select>
+                    <option>Employment</option>
+                    <option>Training</option>
+                    <option>Education</option>
+                    <option>Exploration</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= NAVIGATION ================= -->
+    <div class="form-navigation">
+
+        <a href="activities.html" class="btn-primary">
+            Next Section →
+        </a>
+
+    </div>
+
+    <!-- ================= SUBMIT ================= -->
+    <div class="form-actions">
+
+        <button type="submit" class="submit-btn">
+            Save Intake
+        </button>
+
+    </div>
 
 </section>

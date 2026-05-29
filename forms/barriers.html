@@ -3,109 +3,118 @@
     <h2>Section E — Initial Barriers Assessment</h2>
 
     <p class="section-description">
-        Identify barriers that may impact workforce readiness, participation,
-        and placement success.
+        Identify barriers that may impact workforce readiness, participation, and placement success.
     </p>
 
+    <!-- ================= BARRIER GRID ================= -->
     <div class="barrier-grid">
 
-        <!-- Transportation -->
-
+        <!-- ================= TRANSPORTATION ================= -->
         <div class="barrier-card">
 
             <div class="barrier-header">
-
                 <label class="barrier-toggle">
-
-                    <input
-                        type="checkbox"
-                        name="barrier_transportation">
-
+                    <input type="checkbox" name="barriers" value="transportation">
                     <span>Transportation</span>
-
                 </label>
-
             </div>
 
             <div class="barrier-details">
 
                 <div class="field">
-
-                    <label>Barrier Status</label>
-
-                    <select>
+                    <label>Status</label>
+                    <select name="transportation_status">
                         <option>Emerging</option>
                         <option>Ongoing</option>
                         <option>Improving</option>
                         <option>Resolved</option>
                         <option>Needs Follow-Up</option>
                     </select>
-
                 </div>
 
                 <div class="field">
-
                     <label>Severity Level</label>
-
-                    <input
-                        type="range"
-                        min="1"
-                        max="5"
-                        value="3"
-                        class="severity-slider">
-
+                    <input type="range" min="1" max="5" value="3" class="severity-slider">
                     <div class="severity-labels">
                         <span>Low</span>
                         <span>Moderate</span>
                         <span>High</span>
                     </div>
-
                 </div>
 
-                <div class="field">
-
+                <div class="field full-width">
                     <label>Notes</label>
-
                     <textarea rows="3"></textarea>
-
                 </div>
 
-                <div class="field">
-
-                    <label>Recommended Support Action</label>
-
+                <div class="field full-width">
+                    <label>Support Action</label>
                     <textarea rows="3"></textarea>
-
                 </div>
 
             </div>
-
         </div>
 
-        <!-- Attendance -->
-
+        <!-- ================= ATTENDANCE ================= -->
         <div class="barrier-card">
 
             <div class="barrier-header">
-
                 <label class="barrier-toggle">
-
-                    <input
-                        type="checkbox"
-                        name="barrier_attendance">
-
+                    <input type="checkbox" name="barriers" value="attendance">
                     <span>Attendance Consistency</span>
-
                 </label>
-
             </div>
 
             <div class="barrier-details">
 
                 <div class="field">
+                    <label>Status</label>
+                    <select name="attendance_status">
+                        <option>Emerging</option>
+                        <option>Ongoing</option>
+                        <option>Improving</option>
+                        <option>Resolved</option>
+                        <option>Needs Follow-Up</option>
+                    </select>
+                </div>
 
-                    <label>Barrier Status</label>
+                <div class="field">
+                    <label>Severity Level</label>
+                    <input type="range" min="1" max="5" value="3" class="severity-slider">
+                    <div class="severity-labels">
+                        <span>Low</span>
+                        <span>Moderate</span>
+                        <span>High</span>
+                    </div>
+                </div>
 
+                <div class="field full-width">
+                    <label>Notes</label>
+                    <textarea rows="3"></textarea>
+                </div>
+
+                <div class="field full-width">
+                    <label>Support Action</label>
+                    <textarea rows="3"></textarea>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= COMMUNICATION ================= -->
+        <div class="barrier-card">
+
+            <div class="barrier-header">
+                <label class="barrier-toggle">
+                    <input type="checkbox" name="barriers" value="communication">
+                    <span>Communication Skills</span>
+                </label>
+            </div>
+
+            <div class="barrier-details">
+
+                <div class="field">
+                    <label>Status</label>
                     <select>
                         <option>Emerging</option>
                         <option>Ongoing</option>
@@ -113,89 +122,59 @@
                         <option>Resolved</option>
                         <option>Needs Follow-Up</option>
                     </select>
-
                 </div>
 
                 <div class="field">
-
                     <label>Severity Level</label>
-
-                    <input
-                        type="range"
-                        min="1"
-                        max="5"
-                        value="3"
-                        class="severity-slider">
-
+                    <input type="range" min="1" max="5" value="3" class="severity-slider">
                 </div>
 
-                <div class="field">
+                <div class="field full-width">
                     <label>Notes</label>
                     <textarea rows="3"></textarea>
                 </div>
 
-                <div class="field">
-                    <label>Recommended Support Action</label>
+                <div class="field full-width">
+                    <label>Support Action</label>
                     <textarea rows="3"></textarea>
                 </div>
 
             </div>
+        </div>
+
+    </div>
+
+    <!-- ================= SUMMARY ================= -->
+    <div class="barrier-summary">
+
+        <h3>Barrier Risk Summary</h3>
+
+        <div class="summary-grid">
+
+            <div class="summary-item">
+                <span>Active Barriers</span>
+                <strong>4</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>High Severity</span>
+                <strong>2</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>Needs Follow-Up</span>
+                <strong>3</strong>
+            </div>
 
         </div>
 
-        <!-- Repeat Pattern -->
+    </div>
 
-        <!-- Emotional Readiness -->
-        <!-- Interview Confidence -->
-        <!-- Communication Skills -->
-        <!-- Documentation / ID -->
-        <!-- Legal Concerns -->
-        <!-- Scheduling Conflicts -->
-        <!-- Housing Instability -->
-        <!-- Technology Access -->
-        <!-- Motivation -->
-        <!-- Anxiety Around Work Environments -->
-
+    <!-- ================= SUBMIT ================= -->
+    <div class="form-actions">
+        <button type="submit" class="submit-btn">
+            Submit Form
+        </button>
     </div>
 
 </section>
-
-
-
-<div class="barrier-summary">
-
-    <h3>Barrier Risk Summary</h3>
-
-    <div class="summary-grid">
-
-        <div class="summary-item">
-            <span>Active Barriers</span>
-            <strong>4</strong>
-        </div>
-
-        <div class="summary-item">
-            <span>High Severity</span>
-            <strong>2</strong>
-        </div>
-
-        <div class="summary-item">
-            <span>Needs Follow-Up</span>
-            <strong>3</strong>
-        </div>
-
-
-    </div>
-
-
-    <div class="form-actions">
-
-<button type="submit" class="submit-btn">
-    Submit Form
-</button>
-
-</div>
-
-
-</div>
-
-

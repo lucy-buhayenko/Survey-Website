@@ -6,13 +6,10 @@
         Explore career interests, work preferences, and engagement levels.
     </p>
 
-    <!-- Favorite Activities -->
-
+    <!-- ================= FAVORITE ACTIVITIES ================= -->
     <div class="field full-width">
 
-        <label>
-            What types of activities does the resident enjoy most?
-        </label>
+        <label>What types of activities does the resident enjoy most?</label>
 
         <div class="interest-chips">
 
@@ -43,7 +40,7 @@
 
             <label class="chip">
                 <input type="checkbox" name="activities" value="Hands-On Projects">
-                Hands-On Projects
+                Hands-On Work
             </label>
 
             <label class="chip">
@@ -52,26 +49,18 @@
             </label>
 
         </div>
-
     </div>
 
-    <!-- Avoided Activities -->
-
+    <!-- ================= AVOIDED ACTIVITIES ================= -->
     <div class="field full-width">
 
-        <label>
-            What activities does the resident tend to avoid?
-        </label>
+        <label>What activities does the resident tend to avoid?</label>
 
-        <textarea
-            rows="3"
-            placeholder="Describe activities the resident avoids...">
-        </textarea>
+        <textarea rows="3" placeholder="Describe activities the resident avoids..."></textarea>
 
     </div>
 
-    <!-- Team vs Independent -->
-
+    <!-- ================= WORK STYLE ================= -->
     <div class="preference-card">
 
         <h3>Work Style Preference</h3>
@@ -80,20 +69,18 @@
 
             <label class="choice-card">
                 <input type="radio" name="workStyle" value="Team">
-                <span>👥 Team Work</span>
+                Team Work
             </label>
 
             <label class="choice-card">
                 <input type="radio" name="workStyle" value="Independent">
-                <span>🎯 Independent Work</span>
+                Independent Work
             </label>
 
         </div>
-
     </div>
 
-    <!-- Environment -->
-
+    <!-- ================= ENVIRONMENT ================= -->
     <div class="preference-card">
 
         <h3>Preferred Environment</h3>
@@ -102,20 +89,18 @@
 
             <label class="choice-card">
                 <input type="radio" name="environment" value="Structured">
-                <span>📋 Structured Environment</span>
+                Structured
             </label>
 
             <label class="choice-card">
                 <input type="radio" name="environment" value="Flexible">
-                <span>🔄 Flexible Environment</span>
+                Flexible
             </label>
 
         </div>
-
     </div>
 
-    <!-- People vs Tasks -->
-
+    <!-- ================= WORK FOCUS ================= -->
     <div class="preference-card">
 
         <h3>Work Focus Preference</h3>
@@ -124,28 +109,23 @@
 
             <label class="choice-card">
                 <input type="radio" name="focus" value="People">
-                <span>🤝 People-Focused Work</span>
+                People-Focused
             </label>
 
             <label class="choice-card">
                 <input type="radio" name="focus" value="Task">
-                <span>✅ Task-Focused Work</span>
+                Task-Focused
             </label>
 
         </div>
-
     </div>
 
-    <!-- Career Interests -->
-
+    <!-- ================= CAREER INTERESTS ================= -->
     <div class="field full-width">
 
-        <label>
-            What careers or industries interest the resident?
-        </label>
+        <label>What careers or industries interest the resident?</label>
 
         <select multiple class="career-select">
-
             <option>Healthcare</option>
             <option>Technology</option>
             <option>Construction</option>
@@ -156,29 +136,20 @@
             <option>Retail</option>
             <option>Public Service</option>
             <option>Transportation</option>
-
         </select>
 
     </div>
 
-    <!-- Career Awareness -->
-
+    <!-- ================= CAREER AWARENESS ================= -->
     <div class="field full-width">
 
-        <label>
-            Does the resident show realistic understanding of career pathways?
-        </label>
+        <label>Career pathway understanding</label>
 
         <div class="slider-container">
 
             <span>Needs Exploration</span>
 
-            <input
-                type="range"
-                min="1"
-                max="5"
-                value="3"
-                class="career-slider">
+            <input type="range" min="1" max="5" value="3" class="career-slider">
 
             <span>Highly Aware</span>
 
@@ -186,54 +157,46 @@
 
     </div>
 
-    <!-- Engagement -->
-
+    <!-- ================= ENGAGEMENT ================= -->
     <div class="field full-width">
 
-        <label>
-            How engaged does the resident appear when discussing work interests?
-        </label>
+        <label>Engagement level during discussions</label>
 
         <div class="emoji-rating">
 
             <label>
                 <input type="radio" name="engagement" value="1">
-                😐
+                1
             </label>
 
             <label>
                 <input type="radio" name="engagement" value="2">
-                🙂 
+                2
             </label>
 
             <label>
                 <input type="radio" name="engagement" value="3">
-                😊
+                3
             </label>
 
             <label>
                 <input type="radio" name="engagement" value="4">
-                😃
+                4
             </label>
 
             <label>
                 <input type="radio" name="engagement" value="5">
-                🚀
+                5
             </label>
 
         </div>
-
-        
-
     </div>
 
-
+    <!-- ================= SUBMIT ================= -->
     <div class="form-actions">
-
-<button type="submit" class="submit-btn">
-    Submit Form
-</button>
-
-</div>
+        <button type="submit" class="submit-btn">
+            Submit Form
+        </button>
+    </div>
 
 </section>
