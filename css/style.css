@@ -526,3 +526,39 @@ button,
 .barrier-card {
     transition: all 0.2s ease;
 }
+
+
+.card p,
+.choice-card label,
+.summary-item,
+.summary-item p {
+    font-size: 0.85rem; /* reduced from ~0.95–1rem */
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.card h3,
+.summary-item strong {
+    font-size: 1.1rem;
+}
+
+.card,
+.choice-card,
+.summary-item {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.kpi-card h3 {
+    font-size: 1.4rem;   /* was 2rem */
+    line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.support-section .section-description {
+    margin: 0 auto;
+    text-align: center;
+    max-width: 800px;
+}
