@@ -1,256 +1,1206 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VDP Portal | Mercy Home</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet" />
 
-    <title>VDP Portal | Mercy Home</title>
+  <link rel="stylesheet" href="css/style.css" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Chart.js core (must load before any chart scripts) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- XLSX -->
-    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
+  <!-- XLSX parser -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 </head>
-
 <body>
 
-<!-- ================= NAVBAR ================= -->
-
-<nav class="navbar">
-
-    <div class="logo-area">
-        <img src="css/mercyhome.png" alt="Mercy Home Logo">
-        <span>VDP Portal</span>
-    </div>
-
-    <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#forms">Forms</a></li>
-        <li><a href="#dashboard">Dashboard</a></li>
-        <li><a href="#activity">Activity</a></li>
-    </ul>
-
-</nav>
-
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-    <div>
-
-        <h1>Vocational Development Portal</h1>
-
-        <p>
-            Track resident progress, workforce readiness, barriers,
-            assessments, and placements in one unified system.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="#forms">
-                <button class="btn-primary">Open Forms</button>
-            </a>
-
-            <a href="#dashboard">
-                <button class="btn-secondary">View Dashboard</button>
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= MICROSOFT FORMS ================= -->
-
-<section class="forms-section form-wrapper" id="forms">
-
-
-<h2>Assessment Forms</h2>
-
-<p class="section-description">
-    Select the appropriate assessment form below.
-</p>
-
-<div class="form-grid">
-
-    <a class="card green"
-       href="https://forms.cloud.microsoft/r/Q6FCQ9FM7n"
-       target="_blank"
-       rel="noopener noreferrer">
-        <h3>Daily</h3>
-        <p>Daily resident progress check-in</p>
-    </a>
-
-    <a class="card blue"
-       href="https://forms.cloud.microsoft/r/ZjYUeVfNP6"
-       target="_blank"
-       rel="noopener noreferrer">
-        <h3>Weekly</h3>
-        <p>Weekly progress assessment</p>
-    </a>
-
-    <a class="card green"
-       href="https://forms.cloud.microsoft/r/4WiEkhwxzg"
-       target="_blank"
-       rel="noopener noreferrer">
-        <h3>Midpoint</h3>
-        <p>Mid-program evaluation</p>
-    </a>
-
-    <a class="card blue"
-       href="https://forms.cloud.microsoft/r/wKJiQqMrR2"
-       target="_blank"
-       rel="noopener noreferrer">
-        <h3>Endpoint</h3>
-        <p>Program completion assessment</p>
-    </a>
-
-    <a class="card green"
-       href="https://forms.cloud.microsoft/r/3yxndSwR7L"
-       target="_blank"
-       rel="noopener noreferrer">
-        <h3>Post-Program Follow-Up</h3>
-        <p>Long-term outcome tracking</p>
-    </a>
-
+<!-- ─────────────────────────────────────────────
+     LOADING OVERLAY
+───────────────────────────────────────────── -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loading-box">
+    <div class="loading-spinner"></div>
+    <p>Loading VDP Data</p>
+    <small>Importing weekly, endpoint &amp; follow-up records&hellip;</small>
+  </div>
 </div>
 
 
-</section>
+<!-- ─────────────────────────────────────────────
+     SIDEBAR
+───────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
 
-<!-- ================= KPI DASHBOARD ================= -->
-
-<section class="kpi-section form-wrapper" id="dashboard">
-
-    <h2>Program Overview</h2>
-
-    <p class="section-description">
-        Live summary generated from weekly assessments.
-    </p>
-
-    <div class="kpi-grid">
-
-        <div class="kpi-card">
-            <span>Active Participants</span>
-            <h3 id="activeResidents">0</h3>
-        </div>
-
-        <div class="kpi-card">
-            <span>Placement Ready</span>
-            <h3 id="placementReady">0</h3>
-        </div>
-
-        <div class="kpi-card">
-            <span>Average Readiness</span>
-            <h3 id="avgReadiness">0%</h3>
-        </div>
-
-        <div class="kpi-card">
-            <span>Assessment Records</span>
-            <h3 id="assessmentCount">0</h3>
-        </div>
-
-        <div class="kpi-card">
-            <span>Data Status</span>
-            <h3 id="dataStatus">Loading...</h3>
-        </div>
-
+  <div class="sidebar-logo">
+    <img src="assets/logo.png" alt="Mercy Home logo" onerror="this.style.display='none'" />
+    <div>
+      <span class="sidebar-logo-text">VDP Portal</span>
+      <span class="sidebar-logo-sub">Mercy Home</span>
     </div>
+  </div>
 
-</section>
+  <nav class="sidebar-nav" aria-label="Primary navigation">
 
-<!-- ================= CHARTS ================= -->
+    <!-- ── EXECUTIVE ── -->
+    <div class="nav-section-label">Executive</div>
 
-<section class="dashboard-section form-wrapper">
-
-    <div class="dashboard-card">
-        <h3>Participant Readiness Scores</h3>
-        <canvas id="readinessChart"></canvas>
-    </div>
-
-    <div class="dashboard-card">
-        <h3>Readiness Distribution</h3>
-        <canvas id="distributionChart"></canvas>
-    </div>
-
-    <div class="dashboard-card">
-        <h3>Work Track Distribution</h3>
-        <canvas id="trackChart"></canvas>
-    </div>
-
-</section>
-
-<!-- ================= ACTIVITY ================= -->
-
-<section class="activity-section form-wrapper" id="activity">
-
-    <h2>Recent Activity</h2>
-
-    <p class="section-description">
-        Latest assessment submissions imported from Excel.
-    </p>
-
-    <div class="table-container">
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>Participant</th>
-                    <th>Evaluator</th>
-                    <th>Work Track</th>
-                </tr>
-            </thead>
-
-            <tbody id="activityTableBody">
-                <tr>
-                    <td colspan="3">Waiting for Excel data...</td>
-                </tr>
-            </tbody>
-
-        </table>
-
-    </div>
-
-</section>
-
-<!-- ================= SUPPORT ================= -->
-
-<section class="support-section form-wrapper">
-
-    <h2>Support</h2>
-
-    <p class="section-description">
-        Need help accessing reports or dashboards?
-    </p>
-
-    <a href="mailto:support@example.org">
-        <button class="btn-primary">Contact Support</button>
+    <a class="nav-item active" data-section="sec-exec-readiness" role="button" tabindex="0">
+      <span class="nav-num">1</span>Workforce Readiness
+    </a>
+    <a class="nav-item" data-section="sec-exec-cohort" role="button" tabindex="0">
+      <span class="nav-num">2</span>Readiness by Cohort
+    </a>
+    <a class="nav-item" data-section="sec-exec-funnel" role="button" tabindex="0">
+      <span class="nav-num">3</span>Employment Funnel
     </a>
 
-</section>
+    <!-- ── WEEKLY ── -->
+    <div class="nav-section-label">Weekly Progress</div>
 
-<!-- ================= FOOTER ================= -->
+    <a class="nav-item" data-section="sec-w-skills" role="button" tabindex="0">
+      <span class="nav-num">4</span>Professional Skills
+    </a>
+    <a class="nav-item" data-section="sec-w-leadership" role="button" tabindex="0">
+      <span class="nav-num">5</span>Leadership &amp; Collaboration
+    </a>
+    <a class="nav-item" data-section="sec-w-growth" role="button" tabindex="0">
+      <span class="nav-num">6</span>Weekly Growth Trends
+    </a>
 
-<footer>
-    <p>© Mercy Home Vocational Development Program</p>
-</footer>
+    <!-- ── ENDPOINT ── -->
+    <div class="nav-section-label">Endpoint Results</div>
 
-<!-- ================= APP ================= -->
+    <a class="nav-item" data-section="sec-e-readiness" role="button" tabindex="0">
+      <span class="nav-num">7</span>Employer Readiness
+    </a>
+    <a class="nav-item" data-section="sec-e-applications" role="button" tabindex="0">
+      <span class="nav-num">8</span>Applications Submitted
+    </a>
+    <a class="nav-item" data-section="sec-e-networking" role="button" tabindex="0">
+      <span class="nav-num">9</span>Networking Activity
+    </a>
+    <a class="nav-item" data-section="sec-e-references" role="button" tabindex="0">
+      <span class="nav-num">10</span>References Secured
+    </a>
+    <a class="nav-item" data-section="sec-e-risk" role="button" tabindex="0">
+      <span class="nav-num">11</span>Career Engagement Risk
+    </a>
 
+    <!-- ── FOLLOW-UP ── -->
+    <div class="nav-section-label">Follow-Up Outcomes</div>
+
+    <a class="nav-item" data-section="sec-f-employment" role="button" tabindex="0">
+      <span class="nav-num">12</span>Employment Status
+    </a>
+    <a class="nav-item" data-section="sec-f-timetohire" role="button" tabindex="0">
+      <span class="nav-num">13</span>Time to Hire
+    </a>
+    <a class="nav-item" data-section="sec-f-workplace" role="button" tabindex="0">
+      <span class="nav-num">14</span>Workplace Success
+    </a>
+    <a class="nav-item" data-section="sec-f-certs" role="button" tabindex="0">
+      <span class="nav-num">15</span>Certification Breakdown
+    </a>
+    <a class="nav-item" data-section="sec-f-alumni" role="button" tabindex="0">
+      <span class="nav-num">16</span>Alumni Engagement
+    </a>
+
+    <!-- ── RECORDS ── -->
+    <div class="nav-section-label">Records</div>
+
+    <a class="nav-item" data-section="sec-participants" role="button" tabindex="0">
+      <span class="nav-num"></span>Participants
+    </a>
+    <a class="nav-item" data-section="sec-activity" role="button" tabindex="0">
+      <span class="nav-num"></span>Activity Log
+    </a>
+    <a class="nav-item" data-section="sec-forms" role="button" tabindex="0">
+      <span class="nav-num"></span>Assessment Forms
+    </a>
+
+  </nav>
+
+  <div class="sidebar-footer">
+    &copy; Mercy Home<br>Vocational Development Program
+  </div>
+</aside>
+
+
+<!-- ─────────────────────────────────────────────
+     MAIN CONTENT WRAPPER
+───────────────────────────────────────────── -->
+<div class="main-wrap">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="hamburger" id="hamburger" aria-label="Toggle sidebar" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div>
+        <div class="topbar-title">Vocational Development Portal</div>
+        <div class="topbar-subtitle" id="topbar-section-name">Executive Overview</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="status-pill" id="status-badge">
+        <span class="status-dot loading" id="status-dot"></span>
+        <span id="status-label">Loading&hellip;</span>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ══════════════════════════════════════════
+       1. WORKFORCE READINESS  (Executive)
+  ══════════════════════════════════════════ -->
+  <section class="page-section active" id="sec-exec-readiness">
+
+    <div class="section-header">
+      <h2>Workforce Readiness Score</h2>
+      <p>Universal readiness metric summarising all participants&rsquo; professional skill development from weekly assessments.</p>
+    </div>
+
+    <!-- KPI strip -->
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Participants</div>
+        <div class="kpi-value" id="kpi-total">&mdash;</div>
+        <div class="kpi-sub">unique individuals</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Average Readiness</div>
+        <div class="kpi-value" id="kpi-avg">&mdash;</div>
+        <div class="kpi-sub">across all weekly scores</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Placement Ready</div>
+        <div class="kpi-value" id="kpi-ready">&mdash;</div>
+        <div class="kpi-sub">score &ge; 80%</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Weekly Records</div>
+        <div class="kpi-value" id="kpi-weekly-rows">&mdash;</div>
+        <div class="kpi-sub">submissions loaded</div>
+      </div>
+      <div class="kpi-card k-muted">
+        <div class="kpi-label">Endpoint Records</div>
+        <div class="kpi-value" id="kpi-endpoint">&mdash;</div>
+        <div class="kpi-sub">graduation assessments</div>
+      </div>
+      <div class="kpi-card k-muted">
+        <div class="kpi-label">Follow-Up Records</div>
+        <div class="kpi-value" id="kpi-followup">&mdash;</div>
+        <div class="kpi-sub">post-program records</div>
+      </div>
+    </div>
+
+    <!-- Charts row 1 -->
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Participant Readiness Scores</h3>
+          <p>Average weekly readiness score per participant, sorted highest to lowest</p>
+        </div>
+        <canvas id="chart-readiness-bar" class="chart-tall"></canvas>
+      </div>
+    </div>
+
+    <!-- Charts row 2 -->
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Readiness Distribution</h3>
+          <p>High / developing / needs support breakdown</p>
+        </div>
+        <canvas id="chart-distribution"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Work Track Distribution</h3>
+          <p>Assessment volume by applied work experience track</p>
+        </div>
+        <canvas id="chart-tracks"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       2. READINESS BY COHORT  (Executive)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-exec-cohort">
+
+    <div class="section-header">
+      <h2>Readiness by Cohort</h2>
+      <p>Compares average readiness scores across different participant cohorts and evaluator groups.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Cohorts Tracked</div>
+        <div class="kpi-value" id="kpi-cohort-count">&mdash;</div>
+        <div class="kpi-sub">unique evaluator groups</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Highest Cohort Avg</div>
+        <div class="kpi-value" id="kpi-cohort-high">&mdash;</div>
+        <div class="kpi-sub">top-performing group</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Lowest Cohort Avg</div>
+        <div class="kpi-value" id="kpi-cohort-low">&mdash;</div>
+        <div class="kpi-sub">needs most support</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Average Readiness by Evaluator Group</h3>
+          <p>Mean weekly readiness score grouped by staff evaluator</p>
+        </div>
+        <canvas id="chart-cohort-bar" class="chart-tall"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Score Range per Cohort</h3>
+          <p>Min, max and average readiness within each group</p>
+        </div>
+        <canvas id="chart-cohort-range"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Cohort Placement Readiness</h3>
+          <p>Percentage of participants scoring &ge; 80% per cohort</p>
+        </div>
+        <canvas id="chart-cohort-placement-ready"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       3. EMPLOYMENT FUNNEL  (Executive)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-exec-funnel">
+
+    <div class="section-header">
+      <h2>Employment Pipeline Funnel</h2>
+      <p>Participant progression from enrolment through to 90-day employment retention.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Enrolled</div>
+        <div class="kpi-value" id="kpi-funnel-enrolled">&mdash;</div>
+        <div class="kpi-sub">total participants</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Placement Rate</div>
+        <div class="kpi-value" id="kpi-funnel-placed">&mdash;</div>
+        <div class="kpi-sub">placed in employment</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">90-Day Retention</div>
+        <div class="kpi-value" id="kpi-funnel-retained">&mdash;</div>
+        <div class="kpi-sub">still employed at 90 days</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Graduation Rate</div>
+        <div class="kpi-value" id="kpi-funnel-graduated">&mdash;</div>
+        <div class="kpi-sub">of enrolled participants</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Pipeline Conversion Funnel</h3>
+          <p>Participant count at each stage of the workforce development journey</p>
+        </div>
+        <div id="funnel-container" style="padding: 8px 0;"></div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Placement Status Breakdown</h3>
+          <p>Graduation employment outcomes</p>
+        </div>
+        <canvas id="chart-placement"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Retention Milestones</h3>
+          <p>30-day and 90-day employment retention</p>
+        </div>
+        <canvas id="chart-retention"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       4. PROFESSIONAL SKILLS  (Weekly)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-w-skills">
+
+    <div class="section-header">
+      <h2>Professional Skills Scorecard</h2>
+      <p>Weekly communication, reliability, preparedness, and accuracy scores across all participants.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Communication</div>
+        <div class="kpi-value" id="kpi-w-comm">&mdash;</div>
+        <div class="kpi-sub">oral &amp; written combined</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Reliability</div>
+        <div class="kpi-value" id="kpi-w-reliability">&mdash;</div>
+        <div class="kpi-sub">commitments &amp; punctuality</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Task Accuracy</div>
+        <div class="kpi-value" id="kpi-w-accuracy">&mdash;</div>
+        <div class="kpi-sub">work quality score</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Avg Focus</div>
+        <div class="kpi-value" id="kpi-w-focus">&mdash;</div>
+        <div class="kpi-sub">mental preparedness</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Professional Skills Heatmap</h3>
+          <p>Skill scores per participant across communication, reliability, preparedness, and accuracy</p>
+        </div>
+        <div class="table-wrap" style="margin-top:4px;">
+          <table class="hm-table" id="skills-heatmap-table">
+            <thead id="skills-heatmap-head"></thead>
+            <tbody id="skills-heatmap-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Skills Comparison by Participant</h3>
+          <p>Side-by-side skill category averages</p>
+        </div>
+        <canvas id="chart-skills-heatmap"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Feedback Application Score</h3>
+          <p>How effectively participants applied given feedback</p>
+        </div>
+        <canvas id="chart-feedback-score"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       5. LEADERSHIP & COLLABORATION  (Weekly)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-w-leadership">
+
+    <div class="section-header">
+      <h2>Leadership &amp; Collaboration</h2>
+      <p>Leadership occurrence counts, group activity participation, and emerging leader identification.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Leadership Events</div>
+        <div class="kpi-value" id="kpi-leadership-total">&mdash;</div>
+        <div class="kpi-sub">observed across all records</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Leadership Score</div>
+        <div class="kpi-value" id="kpi-leadership-avg">&mdash;</div>
+        <div class="kpi-sub">per weekly record</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Group Activity Rate</div>
+        <div class="kpi-value" id="kpi-group-rate">&mdash;</div>
+        <div class="kpi-sub">avg activities per week</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Leadership vs Collaboration Scatter</h3>
+          <p>Leadership occurrences vs group activity count per participant</p>
+        </div>
+        <canvas id="chart-leadership-scatter"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Leadership Leaderboard</h3>
+          <p>Total leadership occurrences ranked by participant</p>
+        </div>
+        <canvas id="chart-leadership-leaderboard"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Group Activity Participation Distribution</h3>
+          <p>How many group activities participants engaged in across all weekly records</p>
+        </div>
+        <canvas id="chart-group-distribution"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       6. WEEKLY GROWTH TRENDS  (Weekly)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-w-growth">
+
+    <div class="section-header">
+      <h2>Weekly Growth Trends</h2>
+      <p>Participant improvement over time across communication, reliability, accuracy, and leadership.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Most Improved</div>
+        <div class="kpi-value" id="kpi-most-improved">&mdash;</div>
+        <div class="kpi-sub">largest score gain</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Weekly Gain</div>
+        <div class="kpi-value" id="kpi-avg-gain">&mdash;</div>
+        <div class="kpi-sub">score improvement per week</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Declining Participants</div>
+        <div class="kpi-value" id="kpi-declining">&mdash;</div>
+        <div class="kpi-sub">negative trend detected</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Readiness Score Trend Over Time</h3>
+          <p>Weekly readiness scores across all participants by submission week</p>
+        </div>
+        <canvas id="chart-growth-trends" class="chart-tall"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Improvement Rankings</h3>
+          <p>Score delta from first to latest assessment per participant</p>
+        </div>
+        <canvas id="chart-improvement-rankings"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Skill Growth by Category</h3>
+          <p>Average growth in communication, reliability, accuracy, leadership</p>
+        </div>
+        <canvas id="chart-skill-growth-category"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       7. EMPLOYER READINESS  (Endpoint)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-e-readiness">
+
+    <div class="section-header">
+      <h2>Employer Readiness</h2>
+      <p>Resume quality, professionalism ratings, mock interview performance, and overall graduation readiness.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Employer Ready</div>
+        <div class="kpi-value" id="kpi-e-ready">&mdash;</div>
+        <div class="kpi-sub">resume status: employer ready</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Mock Interview</div>
+        <div class="kpi-value" id="kpi-e-interview">&mdash;</div>
+        <div class="kpi-sub">graduation mock score</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Endpoint Score</div>
+        <div class="kpi-value" id="kpi-e-overall">&mdash;</div>
+        <div class="kpi-sub">composite graduation score</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Draft Saved Only</div>
+        <div class="kpi-value" id="kpi-e-draft">&mdash;</div>
+        <div class="kpi-sub">resume not yet finalised</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Employer Readiness Distribution</h3>
+          <p>Breakdown by readiness category at graduation</p>
+        </div>
+        <canvas id="chart-employer-readiness"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Mock Interview Score Distribution</h3>
+          <p>Graduation mock interview performance across participants</p>
+        </div>
+        <canvas id="chart-mock-interview"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Professionalism &amp; Growth Mindset Ratings</h3>
+          <p>Professionalism readiness and growth awareness at graduation</p>
+        </div>
+        <canvas id="chart-professionalism-bar" class="chart-tall"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       8. APPLICATIONS SUBMITTED  (Endpoint)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-e-applications">
+
+    <div class="section-header">
+      <h2>Job Search Activity</h2>
+      <p>Total job applications submitted by each participant during their time in the programme.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Applications</div>
+        <div class="kpi-value" id="kpi-apps-total">&mdash;</div>
+        <div class="kpi-sub">submitted programme-wide</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg per Participant</div>
+        <div class="kpi-value" id="kpi-apps-avg">&mdash;</div>
+        <div class="kpi-sub">mean application count</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Zero Applications</div>
+        <div class="kpi-value" id="kpi-apps-zero">&mdash;</div>
+        <div class="kpi-sub">participants needing support</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Applications Submitted per Participant</h3>
+          <p>Total job applications submitted at programme completion</p>
+        </div>
+        <canvas id="chart-applications" class="chart-tall"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Application Bracket Distribution</h3>
+          <p>Participants grouped by application count range</p>
+        </div>
+        <canvas id="chart-applications-dist"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       9. NETWORKING ACTIVITY  (Endpoint)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-e-networking">
+
+    <div class="section-header">
+      <h2>Networking Activity</h2>
+      <p>Industry professionals, employers, and corporate partners contacted by each participant.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Connections</div>
+        <div class="kpi-value" id="kpi-net-total">&mdash;</div>
+        <div class="kpi-sub">professionals contacted</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg per Participant</div>
+        <div class="kpi-value" id="kpi-net-avg">&mdash;</div>
+        <div class="kpi-sub">mean connections</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">No Networking</div>
+        <div class="kpi-value" id="kpi-net-zero">&mdash;</div>
+        <div class="kpi-sub">zero contacts made</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Networking Activity per Participant</h3>
+          <p>Professional contacts made during the programme</p>
+        </div>
+        <canvas id="chart-networking"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Networking Bracket Distribution</h3>
+          <p>Participants grouped by contacts made</p>
+        </div>
+        <canvas id="chart-networking-dist"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       10. REFERENCES SECURED  (Endpoint)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-e-references">
+
+    <div class="section-header">
+      <h2>Professional References</h2>
+      <p>Verified professional references secured by each participant for their job search portfolio.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Total References</div>
+        <div class="kpi-value" id="kpi-ref-total">&mdash;</div>
+        <div class="kpi-sub">secured programme-wide</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg per Participant</div>
+        <div class="kpi-value" id="kpi-ref-avg">&mdash;</div>
+        <div class="kpi-sub">mean references</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">3+ References</div>
+        <div class="kpi-value" id="kpi-ref-strong">&mdash;</div>
+        <div class="kpi-sub">strong portfolio</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">0 References</div>
+        <div class="kpi-value" id="kpi-ref-zero">&mdash;</div>
+        <div class="kpi-sub">need support</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>References per Participant</h3>
+          <p>Total verified references secured at graduation</p>
+        </div>
+        <canvas id="chart-references"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Reference Count Distribution</h3>
+          <p>Participants by number of references secured</p>
+        </div>
+        <canvas id="chart-references-dist"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       11. CAREER ENGAGEMENT RISK  (Endpoint)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-e-risk">
+
+    <div class="section-header">
+      <h2>Career Engagement Risk</h2>
+      <p>Identifies participants at risk of post-graduation disengagement based on job search activity and communication responsiveness.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Low Risk</div>
+        <div class="kpi-value" id="kpi-risk-low">&mdash;</div>
+        <div class="kpi-sub">highly responsive</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Moderate Risk</div>
+        <div class="kpi-value" id="kpi-risk-mid">&mdash;</div>
+        <div class="kpi-sub">slower to respond</div>
+      </div>
+      <div class="kpi-card k-danger">
+        <div class="kpi-label">High Risk</div>
+        <div class="kpi-value" id="kpi-risk-high">&mdash;</div>
+        <div class="kpi-sub">unpredictable contact</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Risk Segmentation</h3>
+          <p>Participant distribution across engagement risk categories</p>
+        </div>
+        <canvas id="chart-risk-matrix"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Risk by Participant</h3>
+          <p>Individual risk rating derived from follow-up communication expectation</p>
+        </div>
+        <div id="risk-participant-list" style="padding: 4px 0;"></div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       12. EMPLOYMENT STATUS  (Follow-Up)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-f-employment">
+
+    <div class="section-header">
+      <h2>Employment Status</h2>
+      <p>Current employment status of graduates: full-time, part-time, and unemployed distribution.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Employment Rate</div>
+        <div class="kpi-value" id="kpi-emp-rate">&mdash;</div>
+        <div class="kpi-sub">any employment</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Full-Time Rate</div>
+        <div class="kpi-value" id="kpi-emp-ft">&mdash;</div>
+        <div class="kpi-sub">full-time placement</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Part-Time Rate</div>
+        <div class="kpi-value" id="kpi-emp-pt">&mdash;</div>
+        <div class="kpi-sub">part-time placement</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Unemployed</div>
+        <div class="kpi-value" id="kpi-emp-none">&mdash;</div>
+        <div class="kpi-sub">currently without work</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Employment Status Breakdown</h3>
+          <p>Distribution of post-program employment types</p>
+        </div>
+        <canvas id="chart-employment-status"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Employment Status per Participant</h3>
+          <p>Individual employment outcomes at follow-up</p>
+        </div>
+        <canvas id="chart-employment-by-person"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       13. TIME TO HIRE  (Follow-Up)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-f-timetohire">
+
+    <div class="section-header">
+      <h2>Time to Hire</h2>
+      <p>How long it took each participant to obtain employment after starting the programme.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Placed Within 30 Days</div>
+        <div class="kpi-value" id="kpi-tth-fast">&mdash;</div>
+        <div class="kpi-sub">quick placement</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Placed 31–90 Days</div>
+        <div class="kpi-value" id="kpi-tth-mid">&mdash;</div>
+        <div class="kpi-sub">moderate pace</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Placed 90+ Days</div>
+        <div class="kpi-value" id="kpi-tth-slow">&mdash;</div>
+        <div class="kpi-sub">extended job search</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Time-to-Hire Distribution</h3>
+          <p>Participants grouped by how long it took to secure employment</p>
+        </div>
+        <canvas id="chart-time-to-hire" class="chart-tall"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       14. WORKPLACE SUCCESS  (Follow-Up)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-f-workplace">
+
+    <div class="section-header">
+      <h2>Workplace Success</h2>
+      <p>Post-placement attendance reliability, self-efficacy, confidence, and workplace incident tracking.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Workplace Score</div>
+        <div class="kpi-value" id="kpi-wp-score">&mdash;</div>
+        <div class="kpi-sub">composite success metric</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Zero Incidents</div>
+        <div class="kpi-value" id="kpi-wp-clean">&mdash;</div>
+        <div class="kpi-sub">no workplace issues</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Any Incidents</div>
+        <div class="kpi-value" id="kpi-wp-incidents">&mdash;</div>
+        <div class="kpi-sub">1 or more recorded</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Workplace Success Scores</h3>
+          <p>Composite score: attendance, confidence, incidents</p>
+        </div>
+        <canvas id="chart-workplace-success"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Attendance Reliability Distribution</h3>
+          <p>Workplace attendance ratings across placed participants</p>
+        </div>
+        <canvas id="chart-attendance-dist"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card span-2">
+        <div class="chart-card-header">
+          <h3>Self-Efficacy &amp; Confidence Ratings</h3>
+          <p>How confident participants feel in their daily job performance</p>
+        </div>
+        <canvas id="chart-self-efficacy"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       15. CERTIFICATION BREAKDOWN  (Follow-Up)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-f-certs">
+
+    <div class="section-header">
+      <h2>Certification Breakdown</h2>
+      <p>Post-programme credentials and certifications earned by graduates including ServSafe, CDL, hospitality and others.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Certifications</div>
+        <div class="kpi-value" id="kpi-cert-total">&mdash;</div>
+        <div class="kpi-sub">earned post-graduation</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Certification Rate</div>
+        <div class="kpi-value" id="kpi-cert-rate">&mdash;</div>
+        <div class="kpi-sub">of followed-up graduates</div>
+      </div>
+      <div class="kpi-card k-muted">
+        <div class="kpi-label">No Certification</div>
+        <div class="kpi-value" id="kpi-cert-none">&mdash;</div>
+        <div class="kpi-sub">none earned yet</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Certification Type Breakdown</h3>
+          <p>Distribution of credential types earned</p>
+        </div>
+        <canvas id="chart-certifications"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Certifications per Participant</h3>
+          <p>Individual credential attainment at follow-up</p>
+        </div>
+        <canvas id="chart-certs-by-person"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       16. ALUMNI ENGAGEMENT  (Follow-Up)
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-f-alumni">
+
+    <div class="section-header">
+      <h2>Alumni Engagement</h2>
+      <p>Graduate responsiveness to staff follow-up communications, survey completion, and ongoing engagement levels.</p>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Active Alumni</div>
+        <div class="kpi-value" id="kpi-alumni-active">&mdash;</div>
+        <div class="kpi-sub">proactively engaged</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Passive Alumni</div>
+        <div class="kpi-value" id="kpi-alumni-passive">&mdash;</div>
+        <div class="kpi-sub">responds when prompted</div>
+      </div>
+      <div class="kpi-card k-danger">
+        <div class="kpi-label">Disengaged Alumni</div>
+        <div class="kpi-value" id="kpi-alumni-disengaged">&mdash;</div>
+        <div class="kpi-sub">difficult to reach</div>
+      </div>
+    </div>
+
+    <div class="chart-grid-2 section-gap">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Alumni Engagement Levels</h3>
+          <p>Communication responsiveness categories post-graduation</p>
+        </div>
+        <canvas id="chart-alumni-funnel"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Engagement by Participant</h3>
+          <p>Individual responsiveness ratings from follow-up records</p>
+        </div>
+        <canvas id="chart-alumni-by-person"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       PARTICIPANTS OVERVIEW
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-participants">
+
+    <div class="section-header">
+      <h2>Participants</h2>
+      <p>Complete view of each participant&rsquo;s readiness score, trend, placement, and retention outcomes.</p>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Search</span>
+      <input
+        class="filter-input"
+        type="text"
+        id="participant-search"
+        placeholder="Participant name&hellip;"
+        style="width:220px;"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="participant-cards-grid" id="participant-cards">
+      <div class="empty-state" style="grid-column:1/-1;">
+        <h3>Loading participants&hellip;</h3>
+        <p>Data will appear once Excel files are loaded.</p>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       ACTIVITY LOG
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-activity">
+
+    <div class="section-header">
+      <h2>Activity Log</h2>
+      <p>All assessment submissions across weekly, endpoint, and follow-up data sources.</p>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Filter by type</span>
+      <select class="filter-select" id="activity-filter-type">
+        <option value="">All types</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Endpoint">Endpoint</option>
+        <option value="Follow-Up">Follow-Up</option>
+      </select>
+      <span class="filter-label">Participant</span>
+      <select class="filter-select" id="activity-filter-person">
+        <option value="">All participants</option>
+      </select>
+      <button class="filter-clear" id="activity-filter-clear">Clear</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Participant</th>
+            <th>Evaluator</th>
+            <th>Type</th>
+            <th>Track / Stage</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="activity-tbody">
+          <tr>
+            <td colspan="5" style="text-align:center;color:var(--muted);padding:28px;">
+              Loading assessment records&hellip;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       ASSESSMENT FORMS
+  ══════════════════════════════════════════ -->
+  <section class="page-section" id="sec-forms">
+
+    <div class="section-header">
+      <h2>Assessment Forms</h2>
+      <p>Open the appropriate Microsoft Form to submit an assessment for a participant.</p>
+    </div>
+
+    <div class="forms-grid">
+
+      <a href="https://forms.cloud.microsoft/r/ZjYUeVfNP6"
+         target="_blank" rel="noopener noreferrer"
+         class="form-link-card">
+        <h3>Weekly Assessment</h3>
+        <p>Ongoing weekly readiness check covering communication, punctuality, focus, and task performance.</p>
+        <span class="form-badge">Open Form</span>
+      </a>
+
+      <a href="https://forms.cloud.microsoft/r/Q6FCQ9FM7n"
+         target="_blank" rel="noopener noreferrer"
+         class="form-link-card">
+        <h3>Daily Check-In</h3>
+        <p>Quick daily resident progress check-in for brief session observations.</p>
+        <span class="form-badge">Open Form</span>
+      </a>
+
+      <a href="https://forms.cloud.microsoft/r/4WiEkhwxzg"
+         target="_blank" rel="noopener noreferrer"
+         class="form-link-card">
+        <h3>Midpoint Evaluation</h3>
+        <p>Mid-programme evaluation assessing development trajectory and areas for growth.</p>
+        <span class="form-badge">Open Form</span>
+      </a>
+
+      <a href="https://forms.cloud.microsoft/r/wKJiQqMrR2"
+         target="_blank" rel="noopener noreferrer"
+         class="form-link-card fc-amber">
+        <h3>Endpoint Assessment</h3>
+        <p>Graduation-stage assessment: placement status, mock interview score, and professionalism rating.</p>
+        <span class="form-badge">Open Form</span>
+      </a>
+
+      <a href="https://forms.cloud.microsoft/r/3yxndSwR7L"
+         target="_blank" rel="noopener noreferrer"
+         class="form-link-card fc-amber">
+        <h3>Post-Programme Follow-Up</h3>
+        <p>30/60/90-day retention tracking, employment status, certifications, and graduate responsiveness.</p>
+        <span class="form-badge">Open Form</span>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <span>&copy; Mercy Home Vocational Development Program</span>
+    <span>Data: weekly.xlsx &middot; endpoint.xlsx &middot; followup.xlsx</span>
+  </footer>
+
+</div><!-- /.main-wrap -->
+
+
+<!-- ─────────────────────────────────────────────
+     JAVASCRIPT  (order matters)
+───────────────────────────────────────────── -->
+<script src="js/normalizers.js"></script>
+<script src="js/charts.js"></script>
 <script src="js/app.js"></script>
 
 </body>
-
 </html>
-
-
