@@ -1,5 +1,4 @@
 /* ============================================================
-   EXECUTIVE DASHBOARDS (1–3) — CLEAN OPTIMIZED VERSION
    Includes:
    1. Workforce Readiness Gauge
    2. Readiness by Cohort

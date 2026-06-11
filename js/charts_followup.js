@@ -1,6 +1,5 @@
 /* ============================================================
-   FOLLOW-UP DASHBOARDS (16–21) — CLEAN OPTIMIZED VERSION
-   Includes ONLY the 5 most valuable charts:
+   Includes:
    1. Employment Status
    2. Time to Hire
    3. Workplace Success

@@ -187,9 +187,9 @@ function renderSection(id) {
       renderFollowupWorkplace(f);
       break;
 
-    case 'sec-f-certs':
+    /*case 'sec-f-certs':
       renderFollowupCerts(f);
-      break;
+      break;*/
 
     case 'sec-f-alumni':
       renderFollowupAlumni(f);
@@ -383,12 +383,12 @@ function renderWeeklySkills(w) {
     });
   }
 
-  /* Feedback score bar */
+  /* Feedback score bar 
   buildSimpleBar('chart-feedback-score',
     participants.map(n => n.split(' ')[0]),
     participants.map(name => avg(w.filter(r => r.participantName === name).map(r => mapScore(r.applyFeedback)).filter(v => v !== null))),
     { label: 'Feedback Application', colors: C.sage, yMax: 100, yPct: true }
-  );
+  );*/
 
   /* KPIs */
   setText('kpi-w-comm',        avg(w.map(r => avg([mapScore(r.oralComm), mapScore(r.writtenComm)].filter(v => v !== null)))) + '%');
@@ -568,36 +568,41 @@ function renderEndpointReadiness(e) {
   buildDoughnut('chart-employer-readiness', Object.keys(resumeCounts), Object.values(resumeCounts),
     [C.sage, C.warn, C.danger, '#ccc']);
 
-  /* Mock interview bar */
+  /* Mock interview bar 
   buildSimpleBar('chart-mock-interview',
     e.map(r => r.participantName.split(' ')[0]),
     e.map(r => mapScore(r.mockInterview) || 0),
     { label: 'Mock Interview Score', colors: C.forest, yMax: 100, yPct: true }
-  );
+  ); */
 
-  /* Professionalism grouped bar */
   destroyChart('chart-professionalism-bar');
-  const ctxP = document.getElementById('chart-professionalism-bar');
-  if (ctxP) {
-    ChartRegistry['chart-professionalism-bar'] = new Chart(ctxP, {
-      type: 'bar',
-      data: {
-        labels: e.map(r => r.participantName.split(' ')[0]),
-        datasets: [
-          { label: 'Professionalism', data: e.map(r => mapScore(r.professionalism) || 0), backgroundColor: C.forest, borderRadius: 4 },
-          { label: 'Growth Mindset',  data: e.map(r => mapScore(r.growthAwareness) || 0), backgroundColor: C.sage,   borderRadius: 4 },
-        ],
+const ctxP = document.getElementById('chart-professionalism-bar');
+if (ctxP) {
+  ChartRegistry['chart-professionalism-bar'] = new Chart(ctxP, {
+    type: 'bar',
+    data: {
+      labels: e.map(r => r.participantName.split(' ')[0]),
+      datasets: [
+        {
+          label: 'Growth Mindset',
+          data: e.map(r => mapScore(r.growthAwareness) || 0),
+          backgroundColor: C.sage,
+          borderRadius: 4
+        }
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        y: { min: 0, max: 100, ticks: { callback: v => v + '%' }, grid: { color: '#EEF1EF' } },
+        x: { grid: { display: false } },
       },
-      options: {
-        responsive: true,
-        plugins: { legend: { position: 'bottom' } },
-        scales: {
-          y: { min: 0, max: 100, ticks: { callback: v => v + '%' }, grid: { color: '#EEF1EF' } },
-          x: { grid: { display: false } },
-        },
-      },
-    });
-  }
+    },
+  });
+}
+
+  
 }
 
 /* ── ENDPOINT: APPLICATIONS ─────────────────────────────────── */
@@ -833,20 +838,20 @@ function renderFollowupWorkplace(f) {
     const v = (r.attendanceReliab || 'Unknown').trim();
     attCounts[v] = (attCounts[v] || 0) + 1;
   });
-  buildDoughnut('chart-attendance-dist',
+  /*buildDoughnut('chart-attendance-dist',
     Object.keys(attCounts), Object.values(attCounts),
-    [C.sage, C.sageMid, C.warn, C.danger, '#ccc']);
+    [C.sage, C.sageMid, C.warn, C.danger, '#ccc']);*/
 
   /* Self-efficacy bar */
-  buildSimpleBar('chart-self-efficacy',
+  /*buildSimpleBar('chart-self-efficacy',
     f.map(r => r.participantName.split(' ')[0]),
     f.map(r => mapScore(r.selfEfficacy) || 0),
     { label: 'Self-Efficacy Score', colors: C.forest, yMax: 100, yPct: true }
-  );
+  );*/
 }
 
 /* ── FOLLOW-UP: CERTIFICATIONS ──────────────────────────────── */
-function renderFollowupCerts(f) {
+/*function renderFollowupCerts(f) {
   if (!f.length) return;
 
   const certCounts = {};
@@ -871,7 +876,7 @@ function renderFollowupCerts(f) {
     { label: 'Certification Earned', colors: C.sage, yMax: null, yPct: false }
   );
 }
-
+*/
 /* ── FOLLOW-UP: ALUMNI ENGAGEMENT ───────────────────────────── */
 function renderFollowupAlumni(f) {
   if (!f.length) return;

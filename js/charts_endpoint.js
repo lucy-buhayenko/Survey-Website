@@ -1,6 +1,5 @@
 /* ============================================================
-   ENDPOINT DASHBOARDS (10–15) — CLEAN OPTIMIZED VERSION
-   Includes ONLY the 5 most valuable charts:
+   Includes:
    1. Employer Readiness Gauge
    2. Applications Submitted
    3. Networking Activity

@@ -1,6 +1,5 @@
 /* ============================================================
-   WEEKLY DASHBOARDS (4–9) — CLEAN OPTIMIZED VERSION
-   Includes the 3 most valuable weekly charts:
+   Includes:
    1. Professional Skills Heatmap
    2. Leadership & Collaboration Scatter
    3. Weekly Growth Trends
